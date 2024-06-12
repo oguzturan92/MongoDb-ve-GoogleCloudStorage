@@ -1,0 +1,17 @@
+@model CreateCategoryDto
+@{
+    ViewData["Title"] = "Kategori Ekle";
+    Layout = "_Layout";
+}
+
+<div class="container border p-3">
+    <h3>Yeni Kategori Ekle</h3>
+    <form asp-controller="Category" asp-action="CategoryCreate" method="post">
+        <div class="form-group">
+            <label for="CategoryName">Kategori Adı</label>
+            <input type="text" asp-for="CategoryName" id="CategoryName" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-controller="Category" asp-action="CategoryList" class="btn btn-light ml-2">Geri</a>
+    </form>
+</div>

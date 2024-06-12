@@ -1,0 +1,51 @@
+@model CreateProductDto
+@{
+    ViewData["Title"] = "Ürün Ekle";
+    Layout = "_Layout";
+}
+
+<div class="container border p-3">
+    <h3>Yeni Ürün Ekle</h3>
+    <form asp-controller="Product" asp-action="ProductCreate" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="ProductName">Ürün Adı</label>
+            <input type="text" asp-for="ProductName" id="ProductName" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="ProductDescription">Açıklama</label>
+            <input type="text" asp-for="ProductDescription" id="ProductDescription" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="ProductPrice">Fiyat</label>
+            <input type="text" asp-for="ProductPrice" id="ProductPrice" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="ProductStock">Stok</label>
+            <input type="text" asp-for="ProductStock" id="ProductStock" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="ProductStatus">Onay</label>
+            <select asp-for="ProductStatus" id="ProductStatus" class="form-control">
+                    <option disabled selected>Seçiniz</option>
+                    <option value="true">Açık</option>
+                    <option value="false">Kapalı</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="CategoryId">Kategori</label>
+            <select asp-for="CategoryId" id="CategoryId" class="form-control">
+                <option disabled selected>Seçiniz</option>
+                @foreach (var item in ViewBag.categoryList)
+                {
+                    <option value="@item.CategoryId">@item.CategoryName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ProductImage">Resim</label>
+            <input asp-for="ProductImage" name="file" type="file" id="ProductImage" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-controller="Product" asp-action="ProductList" class="btn btn-light ml-2">Geri</a>
+    </form>
+</div>

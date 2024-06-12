@@ -1,0 +1,34 @@
+@model CreateOrderDto
+@{
+    ViewData["Title"] = "Sipariş Ekle";
+    Layout = "_Layout";
+}
+
+<div class="container border p-3">
+    <h3>Yeni Sipariş Ekle</h3>
+    <form asp-controller="Order" asp-action="OrderCreate" method="post">
+        <div class="form-group">
+            <label for="OrderStatus">Sipariş Durumu</label>
+            <select asp-for="OrderStatus" id="OrderStatus" class="form-control">
+                    <option disabled selected>Seçiniz</option>
+                    <option value="siparisalindi">Sipariş Alındı</option>
+                    <option value="hazirlaniyor">Hazırlanıyor</option>
+                    <option value="kargolandi">Kargolandı</option>
+                    <option value="tamamlandi">Tamamlandı</option>
+                    <option value="iptaledildi">İptal Edildi</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="CustomerId">Sipariş Hangi Müşterinin ?</label>
+            <select asp-for="CustomerId" id="CustomerId" class="form-control">
+                <option disabled selected>Seçiniz</option>
+                @foreach (var item in ViewBag.customerList)
+                {
+                    <option value="@item.CustomerId">@item.CustomerFullname</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-controller="Order" asp-action="OrderList" class="btn btn-light ml-2">Geri</a>
+    </form>
+</div>

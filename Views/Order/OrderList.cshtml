@@ -1,0 +1,45 @@
+@model List<ResultOrderDto>
+@{
+    ViewData["Title"] = "Sipariş Listesi";
+    Layout = "_Layout";
+    int count = 0;
+}
+
+<div class="container border p-3">
+    <h3>Sipariş Listesi</h3>
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Sipariş Numarası</th>
+                    <th>Sipariş Tarihi</th>
+                    <th>Müşteri Ad Soyad</th>
+                    <th colspan="4"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.OrderDate.ToString("ddMMyyyy")@item.OrderId</td>
+                        <td>@item.OrderDate</td>
+                        <td>@item.Customer.CustomerFullname</td>
+                        <td><a class="btn btn-primary" asp-controller="Order" asp-action="OrderDetail" asp-route-id="@item.OrderId">Sipariş Detay</a></td>
+                        <td><a class="btn btn-warning" asp-controller="Order" asp-action="OrderUpdate" asp-route-id="@item.OrderId">Düzenle</a></td>
+                        <td><a class="btn btn-danger" asp-controller="Order" asp-action="OrderDelete" asp-route-id="@item.OrderId">Sil</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else
+    {
+        <div class="alert alert-info" role="alert">
+            Kayıtlı sipariş bulunmuyor.
+        </div>
+    }
+    <a asp-controller="Order" asp-action="OrderCreate" class="btn btn-info">Yeni Sipariş Ekle</a>
+</div>

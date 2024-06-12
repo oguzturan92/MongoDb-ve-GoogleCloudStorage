@@ -1,0 +1,95 @@
+@model List<OrderDetailResultOrderLineDto>
+@{
+    ViewData["Title"] = "Sipariş Detay Listesi";
+    Layout = "_Layout";
+    int count = 0;
+    int count2 = 0;
+}
+
+<div class="container border p-3">
+
+    <h3>Ürün Listesi</h3>
+    @if (ViewBag.products != null)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Ürün Adı</th>
+                    <th>Fiyatı</th>
+                    <th>Stok</th>
+                    <th colspan="1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.products)
+                {
+                    count2++;
+                    <tr>
+                        <td>@count2</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.ProductPrice.ToString("f") ₺</td>
+                        <td>@item.ProductStock</td>
+                        <td style="width: 200px;">
+                            @if (item.ProductStock > 0)
+                            {
+                                <a class="btn btn-success" asp-controller="OrderLine" asp-action="OrderNewLine" asp-route-productId="@item.ProductId" asp-route-orderId="@ViewBag.orderId">Ekle</a>
+                            } else
+                            {
+                                <button class="btn btn-light" disabled style="cursor: no-drop;">Tükendi</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else
+    {
+        <div class="alert alert-info" role="alert">
+            Ürün listesinde ürün bulunmuyor.
+        </div>
+    }
+</div>
+
+<div class="container border p-3 mt-3">
+    <h3>Sipariş Detay Listesi</h3>
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Ürün Adı</th>
+                    <th>Fiyatı</th>
+                    <th>Miktar</th>
+                    <th colspan="1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.Product.ProductName</td>
+                        <td>@item.Product.ProductPrice.ToString("f") ₺</td>
+                        <td>@item.OrderLineCount</td>
+                        <td style="width: 200px;"><a class="btn btn-danger" asp-controller="OrderLine" asp-action="OrderLineDelete" asp-route-orderId="@item.OrderId" asp-route-orderLineId="@item.OrderLineId" asp-route-productId="@item.ProductId">@(item.OrderLineCount > 1 ? "Azalt":"Çıkar")</a></td>
+                    </tr>
+                }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Toplam: @Model.Sum(i => i.Product.ProductPrice*i.OrderLineCount).ToString("f") ₺</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    } else
+    {
+        <div class="alert alert-info" role="alert">
+            Siparişe daha önce ürün eklenmemiş.
+        </div>
+    }
+    <a asp-controller="Order" asp-action="OrderList" class="btn btn-light ml-2">Geri</a>
+</div>

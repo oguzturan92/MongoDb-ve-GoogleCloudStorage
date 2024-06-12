@@ -1,0 +1,60 @@
+@model List<ResultProductDto>
+@{
+    ViewData["Title"] = "Ürün Listesi";
+    Layout = "_Layout";
+    int count = 0;
+}
+
+<div class="container border p-3">
+    <h3>Ürün Listesi</h3>
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Resim</th>
+                    <th>Ürün Adı</th>
+                    <th>Kategori</th>
+                    <th>Fiyat</th>
+                    <th>Stok</th>
+                    <th>Onay</th>
+                    <th colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>
+                            <img src="https://storage.cloud.google.com/firstbucketoguz/@item.ProductImage" alt="" style="width: auto; height: 75px; margin-top: 20px;">
+                        </td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Category.CategoryName</td>
+                        <td>@item.ProductPrice</td>
+                        <td>@item.ProductStock</td>
+                        <td>
+                            @if (item.ProductStatus)
+                            {
+                                <i class="fa-solid fa-circle-check" style="color: #00ff37; font-size: 20px;"></i>
+                            } else
+                            {
+                                <i class="fa-solid fa-circle-xmark" style="color: #ff0000; font-size: 20px;"></i>
+                            }
+                        </td>
+                        <td><a class="btn btn-warning" asp-controller="Product" asp-action="ProductUpdate" asp-route-id="@item.ProductId">Düzenle</a></td>
+                        <td><a class="btn btn-danger" asp-controller="Product" asp-action="ProductDelete" asp-route-id="@item.ProductId">Sil</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else
+    {
+        <div class="alert alert-info" role="alert">
+            Kayıtlı ürün bulunmuyor.
+        </div>
+    }
+    <a asp-controller="Product" asp-action="ProductCreate" class="btn btn-info">Yeni Ürün Ekle</a>
+</div>

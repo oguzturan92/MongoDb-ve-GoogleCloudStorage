@@ -1,0 +1,44 @@
+@model List<ResultCustomerDto>
+@{
+    ViewData["Title"] = "Müşteri Listesi";
+    Layout = "_Layout";
+    int count = 0;
+}
+
+<div class="container border p-3">
+    <h3>Müşteri Listesi</h3>
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Ad Soyad</th>
+                    <th>Telefon Num.</th>
+                    <th>Adres</th>
+                    <th colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.CustomerFullname</td>
+                        <td>@item.CustomerPhone</td>
+                        <td>@item.CustomerAddress</td>
+                        <td><a class="btn btn-warning" asp-controller="Customer" asp-action="CustomerUpdate" asp-route-id="@item.CustomerId">Düzenle</a></td>
+                        <td><a class="btn btn-danger" asp-controller="Customer" asp-action="CustomerDelete" asp-route-id="@item.CustomerId">Sil</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else
+    {
+        <div class="alert alert-info" role="alert">
+            Kayıtlı müşteri bulunmuyor.
+        </div>
+    }
+    <a asp-controller="Customer" asp-action="CustomerCreate" class="btn btn-info">Yeni Müşteri Ekle</a>
+</div>
