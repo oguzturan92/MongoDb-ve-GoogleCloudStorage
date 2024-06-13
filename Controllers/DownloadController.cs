@@ -99,7 +99,7 @@ namespace MongoDbECommerce.Controllers
             titleRow.Cell(4).Value = "ProductPrice";
             titleRow.Cell(5).Value = "ProductStock";
             titleRow.Cell(6).Value = "ProductStatus";
-            titleRow.Cell(6).Value = "Category";
+            titleRow.Cell(7).Value = "Category";
 
             // veriler eklenir
             int row = 2;
@@ -110,7 +110,8 @@ namespace MongoDbECommerce.Controllers
                 ws.Cell(row, 3).Value = item["ProductImage"].AsString;
                 ws.Cell(row, 4).Value = item["ProductPrice"].AsString;
                 ws.Cell(row, 5).Value = item["ProductStock"].AsInt32;
-                ws.Cell(row, 6).Value = item["Category"].AsString;
+                ws.Cell(row, 6).Value = item["ProductStatus"].AsBoolean;
+                ws.Cell(row, 7).Value = item["Category"].AsString;
                 row++;
             }
             wb.SaveAs("products.xlsx");
