@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container border p-3">
+    <h3>Dosya İndirme Listesi</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Dosya Adı</th>
+                <th colspan="1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Sipariş Verilerini PDF İndir</td>
+                <td><a class="btn btn-success" asp-controller="Download" asp-action="OrdersPdf">İndir</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ürün Verilerini XLSX İndir</td>
+                <td><a class="btn btn-success" asp-controller="Download" asp-action="ProductsXlsx">İndir</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
