@@ -16,6 +16,8 @@ tabloları kullanıldı ve hepsi birbiri ile ilişkilendirildi.
 
 - Ürün resimlerini tutmak için local storage kullanıldı. Ürün ekleme, silme ve güncelleme aşamalarının tümünde local storage'den yararlanıldı ve aktif olarak kullanıldı.
 
+- MongoDb veritabanından, o anki veriler xlsx ve pdf formatında çekildi. Order tablosu ilişkili olduğu OrderLine tablosu ile birlikte PDF formatında ve Product tablosu ise ilişkili olduğu Category tablosundan veri alarak XLSX formatında indirildi. (DownloadController içinde)
+
 # Sipariş Detayı - Siparişe Ürün Ekleme ve Çıkarma - Güncel Sepet Bilgisi - Güncel Stok Bilgisi Detayları
 ![Ekran görüntüsü 2024-06-13 011004](https://github.com/oguzturan92/MongoDb-ve-LocalStorage/assets/157590022/c895faa0-54c9-4c93-92a6-dc17929a183b)
 
@@ -24,6 +26,15 @@ tabloları kullanıldı ve hepsi birbiri ile ilişkilendirildi.
 
 # İlişkili Tablodan Veri Çekme
 ![Ekran görüntüsü 2024-06-13 011133](https://github.com/oguzturan92/MongoDb-ve-LocalStorage/assets/157590022/8fa5325f-9ae6-462d-a480-6edc29c384e1)
+
+# İndirilen PDF ve XLSX Ekran Görüntüsü Örneği
+![pdf-and-xlsx-download](https://github.com/oguzturan92/MongoDb-ve-LocalStorage/assets/157590022/cba174ff-2cce-406d-ad36-ae118b5775ec)
+
+# Pdf Dosyası
+[ordersAndOrderlines.pdf](https://github.com/user-attachments/files/15815287/ordersAndOrderlines.pdf)
+
+# Xlsx Dosyası
+[productsAndCategoryName.xlsx](https://github.com/user-attachments/files/15815288/productsAndCategoryName.xlsx)
 
 # Örnek Controller
 ![Ekran görüntüsü 2024-06-13 011214](https://github.com/oguzturan92/MongoDb-ve-LocalStorage/assets/157590022/5ef5bbb6-05df-48e1-b220-6b99610e340c)
