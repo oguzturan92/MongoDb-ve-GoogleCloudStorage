@@ -14,7 +14,7 @@ tabloları kullanıldı ve hepsi birbiri ile ilişkilendirildi.
 
 - Sepet oluşturuldu. Sipariş oluşturulurken ürünlerin dinamik olarak stok bilgileri ve fiyat bilgileri hesaplandı. 
 
-- Ürün resimlerini tutmak için local storage kullanıldı. Ürün ekleme, silme ve güncelleme aşamalarının tümünde local storage'den yararlanıldı ve aktif olarak kullanıldı.
+- Ürün resimlerini tutmak için google cloud storage kullanıldı. Ürün ekleme, silme ve güncelleme aşamalarının tümünde local storage'den yararlanıldı ve aktif olarak kullanıldı.
 
 - MongoDb veritabanından, o anki veriler xlsx ve pdf formatında çekildi. Order tablosu ilişkili olduğu OrderLine tablosu ile birlikte PDF formatında ve Product tablosu ise ilişkili olduğu Category tablosundan veri alarak XLSX formatında indirildi. (DownloadController içinde)
 
